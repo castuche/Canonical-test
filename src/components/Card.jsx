@@ -2,29 +2,28 @@ import { useState } from "react";
 
 const Card = () => {
 
-    const [articles, setArticles] = useState();
+    const [posts, setPosts] = useState();
 
-    const fetchArticles = async () => {
+    const fetchPosts = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}`);
-    
-            if (response.status === 200) {
-                const articlesData = response.data;
-                setArticles(articlesData);
-                console.log(articlesData);
+            const response = await fetch('https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            const postsData = await response.json();
+            setPosts(postsData);
         } catch (error) {
-            console.error(error);
+            console.error('There was a problem with the fetch operation:', error);
         }
     };
-
-    fetchArticles();
+    
+    fetchPosts();
 
     return (
         <>
         <div>
-            {articles.map(article => {
-                return <p>{article.id}</p>
+            {posts && posts.map(article => {
+                return <p key={article.id}>{article.id}</p>; 
             })}
         </div>
         <div className="row">
@@ -40,7 +39,7 @@ const Card = () => {
                 </div>
                 </div>
             </div>
-        </div>
+        </div> 
         </>
     );
 };
