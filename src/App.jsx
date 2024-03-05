@@ -1,11 +1,13 @@
 import './App.css'
+import classNames from 'classnames';
+import Card from './components/Card';
 
 function App() {
 
   return (
-    <>
-     Coucou
-    </>
+  <div>
+    <Card/>
+  </div>
   )
 }
 
