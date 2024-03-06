@@ -14,7 +14,7 @@ const Card = () => {
             setPosts(postsData);
             console.log(posts);
         } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('There was a problem fetching the data from the api:', error);
         }
     };
     
@@ -82,34 +82,22 @@ const Card = () => {
     };
 
     return (
-        <>
-        <div>
-            {posts && posts.map(article => (
-                <div key={article.id}>
-                    <p>Topic: {getTopic(article.id)}</p>
-                    <img src={article.featured_media} alt={article.title.rendered} />
-                    <p>Title: {article.title.rendered}</p>
-                    <p>By {getAuthorName(article.id)} on {getDate(article.date)}</p>
-                    <p>{getCategory(article.id)}</p>
-                </div>
-            ))}
-        </div>
-        {/* <div className="row">
-            <div className="col-5">
-                <div className="p-card u-no-padding">
-                <img className="p-card__image" src="https://assets.ubuntu.com/v1/0f33d832-The-State-of-Robotics.jpg"/>
-                <div className="p-card__inner">
-                    <h3>The State of Robotics - August 2021</h3>
-                    <p>From robots learning to encourage social participation to detect serious environmental problems, it was a learning month.</p>
-                </div>
-                <hr className="u-no-margin--bottom"/>
-                <div className="p-card__inner">
-                </div>
-                </div>
+            <div className="row">
+                {posts.map(article => (
+                    <div key={article.id} className="col-4">
+                        <div className="p-card">
+                            <img src={article.featured_media} alt={article.title.rendered} className="p-card__image"/>
+                            <div className="p-card__inner">
+                                <h3 className="p-card__heading">{article.title.rendered}</h3>
+                                <p className="p-card__content">Topic: {getTopic(article.id)}</p>
+                                <p className="p-card__content">By {getAuthorName(article.id)} on {getDate(article.date)}</p>
+                                <p className="p-card__content">{getCategory(article.id)}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
-        </div>  */}
-        </>
-    );
+        );
 };
 
 export default Card;
