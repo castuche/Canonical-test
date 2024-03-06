@@ -58,7 +58,28 @@ const Card = () => {
         const year = date.getFullYear();
         return `${day} ${month} ${year}`;
     };
-    
+   
+    const getCategory = (postId) => {
+        const post = posts.find(post => post.id === postId);
+        if (!post || !post.categories) {
+            return "Unknown Category";
+        }
+        
+        const categoryId = post.categories[0]; 
+
+        if (post._embedded && post._embedded['wp:term']) {
+            const wpTerm = post._embedded['wp:term'];
+            for (const termArray of wpTerm) {
+                const category = termArray.find(term => term.id === categoryId);
+                if (category) {
+                    if (category.name === "Articles") {return "Article"}
+                    else {return category.name;}
+                }
+            }
+        }
+        
+        return "Unknown Category";
+    };
 
     return (
         <>
@@ -69,6 +90,7 @@ const Card = () => {
                     <img src={article.featured_media} alt={article.title.rendered} />
                     <p>Title: {article.title.rendered}</p>
                     <p>By {getAuthorName(article.id)} on {getDate(article.date)}</p>
+                    <p>{getCategory(article.id)}</p>
                 </div>
             ))}
         </div>
