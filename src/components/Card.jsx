@@ -12,12 +12,13 @@ const Card = () => {
             }
             const postsData = await response.json();
             setPosts(postsData);
+            console.log(posts);
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }
     };
     
-    useEffect(()=> {fetchPosts()}, []);
+    useEffect(()=> {fetchPosts()}, [ ]);
 
     const getAuthorName = (postId) => {
         const post = posts.find(post => post.id === postId);
@@ -30,21 +31,35 @@ const Card = () => {
 
     const getTopic = (postId) => {
         const post = posts.find(post => post.id === postId);
-        if (post && post._embedded && post._embedded['wp:term'] && post._embedded['wp:term'][1]) {
-            const topic = post._embedded['wp:term'][1][0];
-            return topic.name;
+        if (!post || !post.topic) {
+            return "Unknown Topic";
         }
+        
+        const topicId = post.topic[0]; 
+
+        if (post._embedded && post._embedded['wp:term']) {
+            const wpTerm = post._embedded['wp:term'];
+            for (const termArray of wpTerm) {
+                const topic = termArray.find(term => term.id === topicId);
+                if (topic) {
+                    return topic.name;
+                }
+            }
+        }
+        
         return "Unknown Topic";
     };
+    
 
     return (
         <>
         <div>
             {posts && posts.map(article => (
                 <div key={article.id}>
-                    <p>Topic: {getTopic(article.topic)}</p>
+                    <p>Topic: {getTopic(article.id)}</p>
+                    <img src={article.featured_media} alt={article.title.rendered} />
                     <p>Title: {article.title.rendered}</p>
-                    <p>Author: {getAuthorName(article.author)}</p>
+                    <p>By {getAuthorName(article.id)} on </p>
                 </div>
             ))}
         </div>
