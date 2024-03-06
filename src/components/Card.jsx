@@ -82,22 +82,20 @@ const Card = () => {
     };
 
     return (
-            <div className="row">
-                {posts.map(article => (
-                    <div key={article.id} className="col-4">
-                        <div className="p-card">
-                            <img src={article.featured_media} alt={article.title.rendered} className="p-card__image"/>
-                            <div className="p-card__inner">
-                                <h3 className="p-card__heading">{article.title.rendered}</h3>
-                                <p className="p-card__content">Topic: {getTopic(article.id)}</p>
-                                <p className="p-card__content">By {getAuthorName(article.id)} on {getDate(article.date)}</p>
-                                <p className="p-card__content">{getCategory(article.id)}</p>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        );
+        <div className="card-container">
+            {posts && posts.map(article => (
+                <div key={article.id} className="card">
+                    <p className="topic">{getTopic(article.id)}</p>
+                    <hr className="separator" />
+                    <img src={article.featured_media} alt={article.title.rendered} />
+                    <h2 className="title">{article.title.rendered}</h2>
+                    <p className="author-date">By <span className="author">{getAuthorName(article.id)}</span> on <span className="date">{getDate(article.date)}</span></p>
+                    <hr className="separator" />
+                    <p className="category">{getCategory(article.id)}</p>
+                </div>
+            ))}
+        </div>
+    );
 };
 
 export default Card;

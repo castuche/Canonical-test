@@ -40,3 +40,75 @@
 .read-the-docs {
   color: #888;
 }
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Ubuntu', sans-serif;
+
+}
+
+.card {
+  flex: 1 1 300px; 
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  position: relative; 
+  border-top: 4px solid #AD7E97 ;
+  padding-top: 20px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+/* .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: purple; 
+  border-radius: 5px 5px 0 0; 
+} */
+
+.card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.topic {
+  text-transform: uppercase; /* Make uppercase */
+  font-size: smaller; /* Make smaller */
+  font-weight: 200; /* Make thinner */
+  color: black; /* Make black */
+}
+
+.separator {
+  border-top: 1px dotted #ccc; /* Dotted line */
+  margin: 10px 0; /* Adjust margin as needed */
+}
+
+.title {
+  font-size: 1.2em; /* Bigger title */
+  color: #06c; /* Color */
+  margin-bottom: 10px;
+}
+
+.author-date {
+  font-style: italic;
+  font-weight: 300; /* Make thinner */
+}
+
+.author {
+  color: #06c; /* Author color */
+}
+
+.category {
+  font-size: smaller; /* Make smaller */
+  font-weight: 300; /* Make thinner */
+}
