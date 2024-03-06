@@ -49,6 +49,15 @@ const Card = () => {
         
         return "Unknown Topic";
     };
+
+    const getDate = (dateString) => {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+        return `${day} ${month} ${year}`;
+    };
     
 
     return (
@@ -59,7 +68,7 @@ const Card = () => {
                     <p>Topic: {getTopic(article.id)}</p>
                     <img src={article.featured_media} alt={article.title.rendered} />
                     <p>Title: {article.title.rendered}</p>
-                    <p>By {getAuthorName(article.id)} on </p>
+                    <p>By {getAuthorName(article.id)} on {getDate(article.date)}</p>
                 </div>
             ))}
         </div>
