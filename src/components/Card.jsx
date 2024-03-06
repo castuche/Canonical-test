@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Card = () => {
 
@@ -17,16 +17,38 @@ const Card = () => {
         }
     };
     
-    fetchPosts();
+    useEffect(()=> {fetchPosts()}, []);
+
+    const getAuthorName = (postId) => {
+        const post = posts.find(post => post.id === postId);
+        if (post && post._embedded && post._embedded.author) {
+            const author = post._embedded.author[0];
+            return author.name;
+        }
+        return "Unknown Author";
+    };
+
+    const getTopic = (postId) => {
+        const post = posts.find(post => post.id === postId);
+        if (post && post._embedded && post._embedded['wp:term'] && post._embedded['wp:term'][1]) {
+            const topic = post._embedded['wp:term'][1][0];
+            return topic.name;
+        }
+        return "Unknown Topic";
+    };
 
     return (
         <>
         <div>
-            {posts && posts.map(article => {
-                return <p key={article.id}>{article.id}</p>; 
-            })}
+            {posts && posts.map(article => (
+                <div key={article.id}>
+                    <p>Topic: {getTopic(article.topic)}</p>
+                    <p>Title: {article.title.rendered}</p>
+                    <p>Author: {getAuthorName(article.author)}</p>
+                </div>
+            ))}
         </div>
-        <div className="row">
+        {/* <div className="row">
             <div className="col-5">
                 <div className="p-card u-no-padding">
                 <img className="p-card__image" src="https://assets.ubuntu.com/v1/0f33d832-The-State-of-Robotics.jpg"/>
@@ -39,7 +61,7 @@ const Card = () => {
                 </div>
                 </div>
             </div>
-        </div> 
+        </div>  */}
         </>
     );
 };
