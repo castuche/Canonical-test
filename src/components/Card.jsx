@@ -6,7 +6,7 @@ const Card = () => {
 
     const fetchPosts = async () => {
         try {
-            const response = await fetch('https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json');
+            const response = await fetch("https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json");
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

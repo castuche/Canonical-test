@@ -15,7 +15,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   position: relative; 
   border-top: 4px solid #a87ca0 ;
-  margin-bottom: 30px;
   text-align: left;
   color: #5f5c5b;
 }
@@ -44,9 +43,9 @@
 }
 
 .topic {
-  text-transform: uppercase; /* Make uppercase */
-  font-size: 0.9em; /* Make smaller */
-  font-weight: 200; /* Make thinner */
+  text-transform: uppercase; 
+  font-size: 0.9em; 
+  font-weight: 200; 
   padding-left:10px;
 }
 
@@ -55,8 +54,8 @@
 }
 
 .title {
-  font-size: 1.2em; /* Bigger title */
-  color: #3490b4; /* Color */
+  font-size: 1.2em; 
+  color: #3490b4; 
   margin-bottom: 10px;
   line-height: 1.4;
   padding:10px;
@@ -64,13 +63,13 @@
 
 .author-date {
   font-style: italic;
-  font-weight: 300; /* Make thinner */
+  font-weight: 300;
   padding:10px;
   padding-bottom: 10px;
 }
 
 .author {
-  color: #3490b4; /* Author color */
+  color: #3490b4; 
   text-decoration: none;
 }
 
@@ -80,6 +79,7 @@
 
 .category {
   font-size: 0.9em;
-  font-weight: 300; /* Make thinner */
-  padding:5px;
+  font-weight: 300; 
+  padding-left:5px;
+  padding-top: 10px;
 }
