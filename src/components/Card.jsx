@@ -84,15 +84,23 @@ const Card = () => {
     return (
         <div className="card-container">
             {posts && posts.map(article => (
-                <div key={article.id} className="card">
-                    <p className="topic">{getTopic(article.id)}</p>
-                    <hr className="separator" />
-                    <img src={article.featured_media} alt={article.title.rendered} />
-                    <h2 className="title">{article.title.rendered}</h2>
-                    <p className="author-date">By <span className="author">{getAuthorName(article.id)}</span> on <span className="date">{getDate(article.date)}</span></p>
+                <a href={article.link} key={article.id} className="card">
+                    <div className="card-content-middle">
+                        <p className="topic">{getTopic(article.id)}</p>
+                        <hr className="separator" />
+                        <img src={article.featured_media} alt={article.title.rendered} />
+                        <h2 className="title">{article.title.rendered}</h2>
+                    </div>
+                    <p className="author-date">
+                        By{" "}
+                            <a href={article._embedded.author[0].link} className="author">
+                            {getAuthorName(article.id)}
+                            </a>
+                        {" "}
+                        on <span className="date">{getDate(article.date)}</span></p>
                     <hr className="separator" />
                     <p className="category">{getCategory(article.id)}</p>
-                </div>
+                </a>
             ))}
         </div>
     );
